@@ -48,5 +48,11 @@ public class InterestRepository {
 						)
 				).getResultList();
 	}
+
+	@Transactional
+	public Interest update(Interest interest) {
+		eManager.merge(interest);
+		return getById(interest.getId());
+	}
 	
 }

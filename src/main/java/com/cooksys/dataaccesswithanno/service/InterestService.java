@@ -32,4 +32,14 @@ public class InterestService {
 		return iRepository.searchByTitle(interest);
 	}
 
+	public Interest update(String title, Long id) {
+		Interest interest = getById(id);
+		if (title != null) {
+			interest.setTitle(title);
+		}
+		return iRepository.update(interest);
+	}
+	
+	
+
 }

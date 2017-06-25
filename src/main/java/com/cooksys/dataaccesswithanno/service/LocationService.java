@@ -32,4 +32,24 @@ public class LocationService {
 		return locationRepository.getById(id);
 	}
 
+	public Location updateLoc(Long id, String city, String state, String country) {
+		Location location = getById(id);
+		
+		if (city != null) {
+			location.setCity(city);
+		}
+		
+		if (state != null) {
+			location.setState(state);
+		}
+		
+		if (country != null) {
+			location.setCountry(country);
+		}
+		
+		
+		
+		return locationRepository.update(location);
+	}
+
 }

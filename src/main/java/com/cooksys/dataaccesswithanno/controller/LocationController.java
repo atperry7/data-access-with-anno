@@ -29,29 +29,39 @@ public class LocationController {
 		this.lMapper = lMapper;
 	}
 	
-	//get @GetMapping("location")
+	//Gets all locations or by requested city, state, or country
 	@GetMapping("location")
 	public List<Location> getAll(@RequestParam(required = false, value = "city") String city,
 			@RequestParam(required = false, value = "state") String state,
 			@RequestParam(required = false, value = "country") String country, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		if (city != null || state != null || country != null) {
 			return locationService.getByValues(city, state, country);
 		}
 		return locationService.getAll();
 	}
 	
-	//createLocation @PostMapping("location")
+	//Creates a location
 	@PostMapping("location")
 	public Location createLoc(@RequestBody LocationWithOutIdDto location, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_CREATED);
 		return locationService.createLocation(lMapper.toLocation(location));
 	}
 	
-	//getLocation @GetMapping("location/{id}")
+	//Gets a location by its ID
 	@GetMapping("location/{id}")
 	public LocationWithOutIdDto getLocation(@PathVariable Long id, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_FOUND);
 		return lMapper.tLocationWithOutIdDto(locationService.getById(id));
 	}
 	
-	//updateLocation @PostMapping("location/{id}")
+	//Updates a location by id
+	@PostMapping("location/{id}")
+	public LocationWithOutIdDto update(@PathVariable Long id, 
+			@RequestParam(required = false, value = "city") String city,
+			@RequestParam(required = false, value = "state") String state,
+			@RequestParam(required = false, value = "country") String country, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_FOUND);
+		return lMapper.tLocationWithOutIdDto(locationService.updateLoc(id, city, state, country));
+	}
 }

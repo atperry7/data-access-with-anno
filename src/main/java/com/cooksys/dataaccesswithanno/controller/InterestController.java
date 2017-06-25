@@ -30,9 +30,11 @@ public class InterestController {
 		
 	}
 	
-	//get @GetMapping("interest")
+	//Gets a list of all interests or by requested title of interest
 	@GetMapping("interest")
 	public List<Interest> getAll(@RequestParam(required = false, value="interest") String interest, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_FOUND);
+		
 		if (interest != null) {
 			return iService.getByTitle(interest);
 		}
@@ -40,17 +42,24 @@ public class InterestController {
 		return iService.getAll();
 	}
 	
-	//getInterest @GetMapping("interest/{id}")
+	//Gets an interest by its id
 	@GetMapping("interest/{id}")
 	public InterestWithOutId getInterest(@PathVariable Long id, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return iMapper.withOutId(iService.getById(id));
 	}
 	
-	//createInterest @PostMapping("interest")
+	//Creates an interests
 	@PostMapping("interest")
 	public Interest create(@RequestBody InterestWithOutId interest, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_CREATED);
 		return iService.createInterest(iMapper.toInterest(interest));
 	}
 	
-	//updateInterest @PostMapping("interest/{id}")
+	//Updates an interest by ID
+	@PostMapping("interest/{id}")
+	public InterestWithOutId updateInterest(@RequestParam(required = true, value = "title") String title, @PathVariable Long id, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_FOUND);
+		return iMapper.withOutId(iService.update(title, id));
+	}
 }

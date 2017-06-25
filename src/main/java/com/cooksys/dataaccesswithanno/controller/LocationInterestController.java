@@ -3,6 +3,8 @@ package com.cooksys.dataaccesswithanno.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,8 @@ public class LocationInterestController {
 	
 	//Gets a list of people by location with a specific interest
 	@GetMapping("location/{locationId}/interest/{interestId}")
-	public List<PersonWithIdDto> interestByLocation(@PathVariable Long locationId, @PathVariable Long interestId) {
+	public List<PersonWithIdDto> interestByLocation(@PathVariable Long locationId, @PathVariable Long interestId, HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return liService.pplInterestByLocation(locationId, interestId).stream().map(person -> pMapper.tIdDto(person)).collect(Collectors.toList());
 	}
 }

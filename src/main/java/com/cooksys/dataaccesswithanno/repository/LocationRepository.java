@@ -50,5 +50,11 @@ public class LocationRepository {
 	public Location getById(Long id) {
 		return eManager.find(Location.class, id);
 	}
+
+	@Transactional
+	public Location update(Location location) {
+		eManager.merge(location);
+		return getById(location.getId());
+	}
 	
 }
