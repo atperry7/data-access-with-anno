@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.cooksys.dataaccesswithanno.pojo.Interest;
 import com.cooksys.dataaccesswithanno.pojo.Person;
 import com.cooksys.dataaccesswithanno.repository.PersonRepository;
 

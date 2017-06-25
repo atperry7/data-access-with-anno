@@ -1,7 +1,7 @@
 package com.cooksys.dataaccesswithanno.pojo;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,7 +39,7 @@ public class Person {
 	        joinColumns = @JoinColumn(name = "person_id", referencedColumnName="person_id"),
 	        inverseJoinColumns = @JoinColumn(name = "interest_id", referencedColumnName="interest_id")
 	)
-	private Set<Interest> interests = new HashSet<>();
+	private List<Interest> interests = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -81,11 +81,11 @@ public class Person {
 		this.location = location;
 	}
 
-	public Set<Interest> getInterests() {
+	public List<Interest> getInterests() {
 		return interests;
 	}
 
-	public void setInterests(Set<Interest> interests) {
+	public void setInterests(List<Interest> interests) {
 		this.interests = interests;
 	}
 
