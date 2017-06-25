@@ -1,6 +1,5 @@
 package com.cooksys.dataaccesswithanno.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.cooksys.dataaccesswithanno.pojo.Interest;
 import com.cooksys.dataaccesswithanno.pojo.Person;
 
 @Repository

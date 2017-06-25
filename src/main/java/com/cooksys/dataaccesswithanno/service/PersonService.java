@@ -1,14 +1,11 @@
 package com.cooksys.dataaccesswithanno.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.cooksys.dataaccesswithanno.pojo.Interest;
-import com.cooksys.dataaccesswithanno.pojo.Location;
 import com.cooksys.dataaccesswithanno.pojo.Person;
 import com.cooksys.dataaccesswithanno.repository.PersonRepository;
 
@@ -46,7 +43,21 @@ public class PersonService {
 		return pRepository.updatePerson(null);
 	}
 
-	public Person updatePerson(Person person) {
+	public Person updatePerson(Long id, String firstName, String lastName, Long locationId) {
+		Person person = pRepository.getById(id);
+		
+		if (firstName != null) {
+			person.setFirstName(firstName);
+		}
+		
+		if (lastName != null) {
+			person.setLastName(lastName);
+		}
+		
+		if (locationId != null) {
+			//Update location
+		}
+		
 		return pRepository.updatePerson(person);
 	}
 
