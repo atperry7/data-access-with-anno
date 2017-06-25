@@ -50,15 +50,11 @@ public class PersonRepository {
 		return person;
 	}
 
-	public Person getLocation(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Transactional
 	public Person updatePerson(Person person) {
 		eManager.merge(person);
-		return person;
+		return getById(person.getId());
 	}
 	
 }

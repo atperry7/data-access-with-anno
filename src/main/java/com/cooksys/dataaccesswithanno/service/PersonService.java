@@ -14,9 +14,13 @@ public class PersonService {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 	private PersonRepository pRepository;
+	private LocationService lService;
+	private InterestService iService;
 	
-	public PersonService(PersonRepository pRepository) {
+	public PersonService(PersonRepository pRepository, LocationService lService, InterestService iService) {
 		this.pRepository = pRepository;
+		this.lService = lService;
+		this.iService = iService;
 	}
 
 	public List<Person> getByName(String firstName, String lastName) {
@@ -36,11 +40,21 @@ public class PersonService {
 	}
 
 	public Person addInterest(Long personId, Long interestId) {
-		return pRepository.updatePerson(null);
+		Person person = getById(personId);
+		
+		if (interestId != null) {
+			person.getInterests().add(iService.getById(interestId));			
+		}
+		
+		return pRepository.updatePerson(person);
 	}
 
 	public Person addLocation(Long personId, Long locationId) {
-		return pRepository.updatePerson(null);
+		Person person = getById(personId);
+		if (locationId != null) {
+			person.setLocation(lService.getById(locationId));			
+		}
+		return pRepository.updatePerson(person);
 	}
 
 	public Person updatePerson(Long id, String firstName, String lastName, Long locationId) {
@@ -55,7 +69,7 @@ public class PersonService {
 		}
 		
 		if (locationId != null) {
-			//Update location
+			person.setLocation(lService.getById(locationId));
 		}
 		
 		return pRepository.updatePerson(person);
