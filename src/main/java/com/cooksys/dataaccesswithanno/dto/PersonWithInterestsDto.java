@@ -1,14 +1,16 @@
 package com.cooksys.dataaccesswithanno.dto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.cooksys.dataaccesswithanno.pojo.Interest;
 
 public class PersonWithInterestsDto {
 	private String firstName;
 	private String lastName;
-	private List<Interest> interests = new ArrayList<>();
+	private Set<Interest> interests = new HashSet<>();
 
 	public String getFirstName() {
 		return firstName;
@@ -26,11 +28,11 @@ public class PersonWithInterestsDto {
 		this.lastName = lastName;
 	}
 
-	public List<Interest> getInterests() {
+	public Set<Interest> getInterests() {
 		return interests;
 	}
 
-	public void setInterests(List<Interest> interests) {
+	public void setInterests(Set<Interest> interests) {
 		this.interests = interests;
 	}
 

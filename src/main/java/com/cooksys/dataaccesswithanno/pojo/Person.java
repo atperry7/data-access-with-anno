@@ -1,11 +1,14 @@
 package com.cooksys.dataaccesswithanno.pojo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,13 +37,13 @@ public class Person {
 	@JoinColumn(name="location_id")
 	private Location location;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 	        name = "person_interest",
 	        joinColumns = @JoinColumn(name = "person_id", referencedColumnName="person_id"),
 	        inverseJoinColumns = @JoinColumn(name = "interest_id", referencedColumnName="interest_id")
 	)
-	private List<Interest> interests = new ArrayList<>();
+	private Set<Interest> interests = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -82,11 +85,11 @@ public class Person {
 		this.location = location;
 	}
 
-	public List<Interest> getInterests() {
+	public Set<Interest> getInterests() {
 		return interests;
 	}
 
-	public void setInterests(List<Interest> interests) {
+	public void setInterests(Set<Interest> interests) {
 		this.interests = interests;
 	}
 
