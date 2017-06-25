@@ -68,9 +68,10 @@ public class PersonController {
 	public PersonWithLocationDto updatePerson(@PathVariable Long id,
 			@RequestParam(required = false, value = "firstName") String firstName,
 			@RequestParam(required = false, value = "lastName") String lastName,
+			@RequestParam(required = false, value = "age") Integer age,
 			@RequestParam(required = false, value = "locationId") Long locationId, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
-		return pMapper.personWithLocationDto(personService.updatePerson(id, firstName, lastName, locationId));
+		return pMapper.personWithLocationDto(personService.updatePerson(id, firstName, lastName, age, locationId));
 	}
 
 	// Gets all interests from the requested Person

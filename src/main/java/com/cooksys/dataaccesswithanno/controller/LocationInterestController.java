@@ -1,13 +1,32 @@
 package com.cooksys.dataaccesswithanno.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cooksys.dataaccesswithanno.dto.PersonWithIdDto;
+import com.cooksys.dataaccesswithanno.mapper.PersonMapper;
+import com.cooksys.dataaccesswithanno.service.LocationInterestService;
 
 @RestController
 @RequestMapping("locationinterest")
 public class LocationInterestController {
 
-	//getPeopleByLocation @GetMapping("peoplebylocation")
+	private LocationInterestService liService;
+	private PersonMapper pMapper;
+
+	public LocationInterestController(LocationInterestService liService, PersonMapper pMapper) {
+		this.liService = liService;
+		this.pMapper = pMapper;
+	}
 	
-	//getPeopleByInterest @GetMapping("peoplebyinterest")
+	//Gets a list of people by location with a specific interest
+	@GetMapping("location/{locationId}/interest/{interestId}")
+	public List<PersonWithIdDto> interestByLocation(@PathVariable Long locationId, @PathVariable Long interestId) {
+		return liService.pplInterestByLocation(locationId, interestId).stream().map(person -> pMapper.tIdDto(person)).collect(Collectors.toList());
+	}
 }

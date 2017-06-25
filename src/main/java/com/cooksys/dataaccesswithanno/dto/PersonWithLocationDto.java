@@ -5,6 +5,7 @@ import com.cooksys.dataaccesswithanno.pojo.Location;
 public class PersonWithLocationDto {
 	private String firstName;
 	private String lastName;
+	private Integer age;
 	private Location location;
 
 	public String getFirstName() {
@@ -29,5 +30,13 @@ public class PersonWithLocationDto {
 
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 }
