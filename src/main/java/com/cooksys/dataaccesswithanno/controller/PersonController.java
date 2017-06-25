@@ -57,10 +57,10 @@ public class PersonController {
 
 	// Creates the person with optional location
 	@PostMapping("person")
-	public Person createPerson(@RequestBody PersonWithoutIdDto person,
+	public PersonWithIdDto createPerson(@RequestBody PersonWithoutIdDto person,
 			@RequestParam(required = false, value = "locationId") Long locationId, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_CREATED);
-		return personService.createPerson(pMapper.toPerson(person));
+		return pMapper.tIdDto(personService.createPerson(pMapper.toPerson(person), locationId));
 	}
 
 	// Updates the requested Person with a new name and location

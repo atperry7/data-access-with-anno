@@ -21,7 +21,7 @@ public class DataAccessWithAnnoApplication {
 	
 	/**
 	 * Allows SpringFox to generate the swagger documentation for all endpoints in the project
-	 * @return Docket object used by SpringFox
+	 * @return Docket object used by SpringFox 
 	 */
 	@Bean
 	public Docket api() {

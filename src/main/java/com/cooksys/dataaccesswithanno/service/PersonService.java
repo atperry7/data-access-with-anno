@@ -35,7 +35,10 @@ public class PersonService {
 		return pRepository.getById(id);
 	}
 
-	public Person createPerson(Person person) {
+	public Person createPerson(Person person, Long locationId) {
+		if (locationId != null) {
+			person.setLocation(lService.getById(locationId));
+		}
 		return pRepository.create(person);
 	}
 
