@@ -50,14 +50,14 @@ public class LocationController {
 	
 	//Gets a location by its ID
 	@GetMapping("location/{id}")
-	public LocationWithOutIdDto getLocation(@PathVariable Long id, HttpServletResponse response) {
+	public LocationWithOutIdDto getLocation(@PathVariable Integer id, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_FOUND);
 		return lMapper.tLocationWithOutIdDto(locationService.getById(id));
 	}
 	
 	//Updates a location by id
 	@PostMapping("location/{id}")
-	public LocationWithOutIdDto update(@PathVariable Long id, 
+	public LocationWithOutIdDto update(@PathVariable Integer id, 
 			@RequestParam(required = false, value = "city") String city,
 			@RequestParam(required = false, value = "state") String state,
 			@RequestParam(required = false, value = "country") String country, HttpServletResponse response) {

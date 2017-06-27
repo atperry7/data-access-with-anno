@@ -27,7 +27,7 @@ public class InterestRepository {
 		return interest;
 	}
 
-	public Interest getById(Long id) {
+	public Interest getById(Integer id) {
 		return eManager.find(Interest.class, id);
 	}
 

@@ -40,7 +40,7 @@ public class PersonRepository {
 		return eManager.createQuery("from Person", Person.class).getResultList();
 	}
 
-	public Person getById(Long id) {
+	public Person getById(Integer id) {
 		return eManager.find(Person.class, id);
 	}
 

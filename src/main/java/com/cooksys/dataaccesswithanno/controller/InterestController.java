@@ -44,7 +44,7 @@ public class InterestController {
 	
 	//Gets an interest by its id
 	@GetMapping("interest/{id}")
-	public InterestWithOutId getInterest(@PathVariable Long id, HttpServletResponse response) {
+	public InterestWithOutId getInterest(@PathVariable Integer id, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return iMapper.withOutId(iService.getById(id));
 	}
@@ -58,7 +58,7 @@ public class InterestController {
 	
 	//Updates an interest by ID
 	@PostMapping("interest/{id}")
-	public InterestWithOutId updateInterest(@RequestParam(required = true, value = "title") String title, @PathVariable Long id, HttpServletResponse response) {
+	public InterestWithOutId updateInterest(@RequestParam(required = true, value = "title") String title, @PathVariable Integer id, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_FOUND);
 		return iMapper.withOutId(iService.update(title, id));
 	}

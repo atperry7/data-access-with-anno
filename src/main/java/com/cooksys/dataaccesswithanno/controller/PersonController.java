@@ -50,7 +50,7 @@ public class PersonController {
 
 	// Gets the requested Person by ID
 	@GetMapping("person/{id}")
-	public PersonWithoutIdDto getPerson(@PathVariable Long id, HttpServletResponse response) {
+	public PersonWithoutIdDto getPerson(@PathVariable Integer id, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_FOUND);
 		return pMapper.toPersonWithoutIdDto(personService.getById(id));
 	}
@@ -58,32 +58,32 @@ public class PersonController {
 	// Creates the person with optional location
 	@PostMapping("person")
 	public PersonWithIdDto createPerson(@RequestBody PersonWithoutIdDto person,
-			@RequestParam(required = false, value = "locationId") Long locationId, HttpServletResponse response) {
+			@RequestParam(required = false, value = "locationId") Integer locationId, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_CREATED);
 		return pMapper.tIdDto(personService.createPerson(pMapper.toPerson(person), locationId));
 	}
 
 	// Updates the requested Person with a new name and location
 	@PostMapping("person/{id}")
-	public PersonWithLocationDto updatePerson(@PathVariable Long id,
+	public PersonWithLocationDto updatePerson(@PathVariable Integer id,
 			@RequestParam(required = false, value = "firstName") String firstName,
 			@RequestParam(required = false, value = "lastName") String lastName,
 			@RequestParam(required = false, value = "age") Integer age,
-			@RequestParam(required = false, value = "locationId") Long locationId, HttpServletResponse response) {
+			@RequestParam(required = false, value = "locationId") Integer locationId, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return pMapper.personWithLocationDto(personService.updatePerson(id, firstName, lastName, age, locationId));
 	}
 
 	// Gets all interests from the requested Person
 	@GetMapping("person/{id}/interests")
-	public PersonWithInterestsDto getPersonInterests(@PathVariable Long id, HttpServletResponse response) {
+	public PersonWithInterestsDto getPersonInterests(@PathVariable Integer id, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_FOUND);
 		return pMapper.personWithInterests(personService.getById(id));
 	}
 
 	// Adds an interest to the requested Person
 	@PostMapping("person/{personId}/interest/{interestId}")
-	public PersonWithInterestsDto addPersonInterest(@PathVariable Long personId, @PathVariable Long interestId,
+	public PersonWithInterestsDto addPersonInterest(@PathVariable Integer personId, @PathVariable Integer interestId,
 			HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_CREATED);
 		return pMapper.personWithInterests(personService.addInterest(personId, interestId));
@@ -91,14 +91,14 @@ public class PersonController {
 
 	// Gets the location for a requested Person
 	@GetMapping("person/{id}/location")
-	public PersonWithLocationDto getPersonLocation(@PathVariable Long id, HttpServletResponse response) {
+	public PersonWithLocationDto getPersonLocation(@PathVariable Integer id, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_FOUND);
 		return pMapper.personWithLocationDto(personService.getById(id));
 	}
 
 	// Adds a location to the requested person
 	@PostMapping("person/{personId}/location/{locationId}")
-	public PersonWithLocationDto addPersonLocation(@PathVariable Long personId, @PathVariable Long locationId,
+	public PersonWithLocationDto addPersonLocation(@PathVariable Integer personId, @PathVariable Integer locationId,
 			HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_CREATED);
 		return pMapper.personWithLocationDto(personService.addLocation(personId, locationId));

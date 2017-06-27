@@ -31,18 +31,18 @@ public class PersonService {
 		return pRepository.getAll();
 	}
 
-	public Person getById(Long id) {
+	public Person getById(Integer id) {
 		return pRepository.getById(id);
 	}
 
-	public Person createPerson(Person person, Long locationId) {
+	public Person createPerson(Person person, Integer locationId) {
 		if (locationId != null) {
 			person.setLocation(lService.getById(locationId));
 		}
 		return pRepository.create(person);
 	}
 
-	public Person addInterest(Long personId, Long interestId) {
+	public Person addInterest(Integer personId, Integer interestId) {
 		Person person = getById(personId);
 		
 		if (interestId != null) {
@@ -52,7 +52,7 @@ public class PersonService {
 		return pRepository.updatePerson(person);
 	}
 
-	public Person addLocation(Long personId, Long locationId) {
+	public Person addLocation(Integer personId, Integer locationId) {
 		Person person = getById(personId);
 		if (locationId != null) {
 			person.setLocation(lService.getById(locationId));			
@@ -60,7 +60,7 @@ public class PersonService {
 		return pRepository.updatePerson(person);
 	}
 
-	public Person updatePerson(Long id, String firstName, String lastName, Integer age, Long locationId) {
+	public Person updatePerson(Integer id, String firstName, String lastName, Integer age, Integer locationId) {
 		Person person = pRepository.getById(id);
 		
 		if (firstName != null) {
