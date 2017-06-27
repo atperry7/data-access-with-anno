@@ -24,8 +24,7 @@ public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="person_id")
-	private Long id;
+	private Integer id;
 
 	private String firstName;
 
@@ -33,23 +32,27 @@ public class Person {
 
 	private Integer age;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="location_id")
+	private Authentication auth;
+	
+	public Authentication getAuth() {
+		return auth;
+	}
+
+	public void setAuth(Authentication auth) {
+		this.auth = auth;
+	}
+
+	@ManyToOne
 	private Location location;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(
-	        name = "person_interest",
-	        joinColumns = @JoinColumn(name = "person_id", referencedColumnName="person_id"),
-	        inverseJoinColumns = @JoinColumn(name = "interest_id", referencedColumnName="interest_id")
-	)
+	@ManyToMany
 	private Set<Interest> interests = new HashSet<>();
-
-	public Long getId() {
+	
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

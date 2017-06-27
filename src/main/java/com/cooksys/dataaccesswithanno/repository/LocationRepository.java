@@ -47,7 +47,7 @@ public class LocationRepository {
 		return location;
 	}
 
-	public Location getById(Long id) {
+	public Location getById(Integer id) {
 		return eManager.find(Location.class, id);
 	}
 

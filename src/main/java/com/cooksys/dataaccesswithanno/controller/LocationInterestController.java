@@ -28,7 +28,7 @@ public class LocationInterestController {
 	
 	//Gets a list of people by location with a specific interest
 	@GetMapping("location/{locationId}/interest/{interestId}")
-	public List<PersonWithIdDto> interestByLocation(@PathVariable Long locationId, @PathVariable Long interestId, HttpServletResponse response) {
+	public List<PersonWithIdDto> interestByLocation(@PathVariable Integer locationId, @PathVariable Integer interestId, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_ACCEPTED);
 		return liService.pplInterestByLocation(locationId, interestId).stream().map(person -> pMapper.tIdDto(person)).collect(Collectors.toList());
 	}

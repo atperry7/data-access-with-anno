@@ -10,7 +10,7 @@ import com.cooksys.dataaccesswithanno.pojo.Interest;
 public class PersonWithInterestsDto {
 	private String firstName;
 	private String lastName;
-	private Set<Interest> interests = new HashSet<>();
+	private Set<InterestWithOutId> interests = new HashSet<>();
 
 	public String getFirstName() {
 		return firstName;
@@ -28,11 +28,11 @@ public class PersonWithInterestsDto {
 		this.lastName = lastName;
 	}
 
-	public Set<Interest> getInterests() {
+	public Set<InterestWithOutId> getInterests() {
 		return interests;
 	}
 
-	public void setInterests(Set<Interest> interests) {
+	public void setInterests(Set<InterestWithOutId> interests) {
 		this.interests = interests;
 	}
 

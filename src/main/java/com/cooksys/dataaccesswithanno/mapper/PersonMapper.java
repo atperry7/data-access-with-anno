@@ -8,7 +8,7 @@ import com.cooksys.dataaccesswithanno.dto.PersonWithLocationDto;
 import com.cooksys.dataaccesswithanno.dto.PersonWithoutIdDto;
 import com.cooksys.dataaccesswithanno.pojo.Person;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {InterestMapper.class})
 public interface PersonMapper {
 	PersonWithoutIdDto toPersonWithoutIdDto(Person p);
 	Person toPerson(PersonWithoutIdDto p);

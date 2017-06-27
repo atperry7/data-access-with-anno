@@ -1,30 +1,34 @@
 package com.cooksys.dataaccesswithanno.pojo;
 
-import javax.persistence.Column;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Location {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="location_id")
-	private Long id;
+	private Integer id;
 	
 	private String city;
 	
 	private String state;
 	
 	private String country;
+	
+	@OneToMany(mappedBy="location")
+	private Set<Person> inhabitants;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

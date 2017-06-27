@@ -28,11 +28,11 @@ public class LocationService {
 		return locationRepository.create(location);
 	}
 
-	public Location getById(Long id) {
+	public Location getById(Integer id) {
 		return locationRepository.getById(id);
 	}
 
-	public Location updateLoc(Long id, String city, String state, String country) {
+	public Location updateLoc(Integer id, String city, String state, String country) {
 		Location location = getById(id);
 		
 		if (city != null) {

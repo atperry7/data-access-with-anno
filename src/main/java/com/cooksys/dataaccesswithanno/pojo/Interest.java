@@ -1,10 +1,13 @@
 package com.cooksys.dataaccesswithanno.pojo;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,16 +16,26 @@ public class Interest {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="interest_id")
-	private Long id;
+	private Integer id;
 	
 	private String title;
+	
+	@ManyToMany(mappedBy = "interests")
+	private Set<Person> intrestees;
 
-	public Long getId() {
+	public Set<Person> getIntrestees() {
+		return intrestees;
+	}
+
+	public void setIntrestees(Set<Person> intrestees) {
+		this.intrestees = intrestees;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
